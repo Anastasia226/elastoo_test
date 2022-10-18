@@ -1,18 +1,14 @@
-#!/usr/bin/env sh
-
-# остановить публикацию при ошибках
+# abort on errors
 set -e
 
-# сборка
+# build
+echo Linting..
+npm run lint
+echo Building. this may take a minute...
 npm run build
 
-# переход в каталог сборки
-cd dist
-
-git init
+# deploy
+echo Deploying..
 git add -A
 git commit -m 'deploy'
-
-git push -f git@github.com:anastasia226/elastoo_test.git master:gh-pages
-
-cd -
+git push -f git@github.com:anastasia226/elastoo_test.git master
